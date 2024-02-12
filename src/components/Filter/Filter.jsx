@@ -1,25 +1,20 @@
 import React from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { refreshFilter } from '../Redux/contactsSlice'; // Poprawny import
+import PropTypes from "prop-types";
 
-
-const Filter = () => {
-  const filter = useSelector((state) => state.contacts.filter);
-  const dispatch = useDispatch();
-
-  const handleChange = (e) => {
-    dispatch(refreshFilter(e.target.value)); // Używamy `refreshFilter`
-  };
-
+const Filter = ({ filter, setFilter }) => {
   return (
     <input
       type="text"
       id="filter"
       name="filter"
       value={filter}
-      onChange={handleChange}
+      onChange={setFilter}
     />
   );
 };
 
 export default Filter;
+
+Filter.propTypes = {
+  filter: PropTypes.string,
+};

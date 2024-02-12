@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import { useDispatch } from 'react-redux';
-import { addContact } from '../Redux/contactsSlice'; // Upewnij się, że ścieżka jest poprawna
+import { nanoid } from "nanoid";
+import PropTypes from "prop-types";
 
-const ContactForm = () => {
+const ContactForm = ({ onSubmit }) => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
-  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Uaktualnienie, aby pasowało do struktury akcji po zmianach w contactsSlice
-    dispatch(addContact({name, number})); // Przekazanie obiektu zamiast pojedynczych wartości
+    const newContact = { id: nanoid(), name, number };
+    onSubmit(newContact);
     setName("");
     setNumber("");
   };
@@ -18,7 +17,6 @@ const ContactForm = () => {
   const handleChangeName = (e) => {
     setName(e.target.value);
   };
-
   const handleChangeNumber = (e) => {
     setNumber(e.target.value);
   };
@@ -28,8 +26,8 @@ const ContactForm = () => {
       <input
         type="text"
         name="name"
-        pattern="^[a-zA-Zа-яА-Я]+([' -][a-zA-Zа-яА-Я]*)*$"
-        title="Name may contain only letters, apostrophe, dash and spaces. For example: Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         value={name}
         onChange={handleChangeName}
         required
@@ -49,3 +47,7 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
+
+ContactForm.propTypes = {
+  onSubmit: PropTypes.func,
+};
