@@ -1,53 +1,47 @@
 import React, { useState } from "react";
-import { nanoid } from "nanoid";
-import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { addContact } from "../Redux/contactsSlice"; // Upewnij się, że ścieżka do pliku jest prawidłowa
 
-const ContactForm = ({ onSubmit }) => {
+const ContactForm = () => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newContact = { id: nanoid(), name, number };
-    onSubmit(newContact);
+    dispatch(addContact({ name, number }));
     setName("");
     setNumber("");
   };
 
-  const handleChangeName = (e) => {
-    setName(e.target.value);
-  };
-  const handleChangeNumber = (e) => {
-    setNumber(e.target.value);
-  };
-
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="name"
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        value={name}
-        onChange={handleChangeName}
-        required
-      />
-      <input
-        type="tel"
-        name="number"
-        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-        value={number}
-        onChange={handleChangeNumber}
-        required
-      />
-      <button type="submit">Add contact</button>
+      <label>
+        Name:
+        <input
+          type="text"
+          name="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        Number:
+        <input
+  type="tel"
+  name="number"
+  value={number}
+  pattern="\+?[0-9\s\-]{7,}"
+  title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+  onChange={(e) => setNumber(e.target.value)}
+  required
+/>
+
+      </label>
+      <button type="submit">Add Contact</button>
     </form>
   );
 };
 
 export default ContactForm;
-
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func,
-};

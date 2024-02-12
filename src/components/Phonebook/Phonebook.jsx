@@ -4,7 +4,7 @@ import ContactForm from "../ContactForm/ContactForm";
 import Contacts from "../ContactList/ContactList";
 import Filter from "../Filter/Filter";
 import { useSelector, useDispatch } from "react-redux";
-import { refreshFilter } from "../Redux/contactsSlice"; // Załóżmy, że ścieżka jest prawidłowa
+import { refreshFilter } from "../Redux/contactsSlice";
 
 const Phonebook = () => {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const Phonebook = () => {
   };
 
   const filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
+    typeof contact.name === "string" && contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
   return (

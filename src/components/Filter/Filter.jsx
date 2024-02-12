@@ -1,20 +1,24 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { refreshFilter } from "../Redux/contactsSlice"; // Dostosuj ścieżkę
 
-const Filter = ({ filter, setFilter }) => {
+const Filter = () => {
+  const dispatch = useDispatch();
+  const filter = useSelector((state) => state.contacts.filter);
+
+  const handleFilterChange = (e) => {
+    dispatch(refreshFilter(e.target.value));
+  };
+
   return (
     <input
       type="text"
       id="filter"
       name="filter"
       value={filter}
-      onChange={setFilter}
+      onChange={handleFilterChange}
     />
   );
 };
 
 export default Filter;
-
-Filter.propTypes = {
-  filter: PropTypes.string,
-};
