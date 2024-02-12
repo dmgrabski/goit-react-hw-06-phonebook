@@ -1,14 +1,14 @@
 import React from "react";
 import "./App.css";
 import Phonebook from "./components/Phonebook/Phonebook";
-//import { configureStore } from "redux";
-//import { devToolsEnhancer } from "@redux-devtools/extension";
+import { Provider } from 'react-redux';
+import { store } from '../src/components/Redux/store';
 
 const App = () => {
   return (
-    <>
+    <Provider store={store}>
       <Phonebook />
-    </>
+    </Provider>
   );
 };
 
