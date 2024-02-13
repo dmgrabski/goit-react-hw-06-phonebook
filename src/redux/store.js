@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import contactsReducer from '../Redux/contactsSlice';
-import { loadState, saveState } from '../Redux/localStorage'; // Funkcje do obsługi localStorage
+import contactsReducer from '../redux/contactsSlice';
+import { loadState, saveState } from '../redux/localStorage'; // Funkcje do obsługi localStorage
 
 const preloadedState = loadState();
 

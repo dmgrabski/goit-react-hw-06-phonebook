@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { refreshFilter } from "../Redux/contactsSlice"; // Dostosuj ścieżkę
+import { refreshFilter } from "../../redux/contactsSlice"; // Dostosuj ścieżkę
 
 const Filter = () => {
   const dispatch = useDispatch();

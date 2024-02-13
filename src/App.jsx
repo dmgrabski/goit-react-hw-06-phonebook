@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Phonebook from "./components/Phonebook/Phonebook";
 import { Provider } from 'react-redux';
-import { store } from './components/Redux/store';
+import { store } from './redux/store';
 
 const App = () => {
   return (

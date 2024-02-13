@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addContact } from "../Redux/contactsSlice"; // Upewnij się, że ścieżka do pliku jest prawidłowa
+import { addContact } from "../../redux/contactsSlice"; // Upewnij się, że ścieżka do pliku jest prawidłowa
 
 const ContactForm = () => {
   const [name, setName] = useState("");

@@ -4,7 +4,7 @@ import ContactForm from "../ContactForm/ContactForm";
 import Contacts from "../ContactList/ContactList";
 import Filter from "../Filter/Filter";
 import { useSelector, useDispatch } from "react-redux";
-import { refreshFilter } from "../Redux/contactsSlice";
+import { refreshFilter } from "../../redux/contactsSlice";
 
 const Phonebook = () => {
   const dispatch = useDispatch();
