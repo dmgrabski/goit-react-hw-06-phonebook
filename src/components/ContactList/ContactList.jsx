@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contactsSlice"; // Dostosuj ścieżkę
+import { deleteContact } from "../../redux/contactsSlice";
 
 const ContactList = ({ contacts }) => {
   const dispatch = useDispatch();

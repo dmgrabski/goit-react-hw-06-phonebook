@@ -16,13 +16,21 @@ export const contactsSlice = createSlice({
     filter: '',
   },
   reducers: {
-    addContact:(state, action) => {
-      //Dodanie nowego kontaktu do stanu
+    addContact: (state, action) => {
+      // Dodanie nowego kontaktu do stanu
       state.contacts.push({
         id: nanoid(),
         name: action.payload.name,
         number: action.payload.number,
       });
+    },
+    deleteContact: (state, action) => {
+      // Usunięcie kontaktu na podstawie id
+      state.contacts = state.contacts.filter(contact => contact.id !== action.payload);
+    },
+    refreshFilter: (state, action) => {
+      // Aktualizacja stanu filtru
+      state.filter = action.payload;
     },
   },
 });
@@ -31,3 +39,4 @@ export const contactsSlice = createSlice({
 export const { addContact, deleteContact, refreshFilter } = contactsSlice.actions;
 
 export default contactsSlice.reducer;
+
